@@ -57,9 +57,6 @@ const TaskCreate = ({ onCreated }) => {
           onInput={(e: any) => {
             setContent(e.target.value);
           }}
-          onBlur={(e: any) => {
-            setContent(e.detail.value);
-          }}
           focus
           maxlength={100}
         />
