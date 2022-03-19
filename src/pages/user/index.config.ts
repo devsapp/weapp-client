@@ -1,3 +1,3 @@
 export default definePageConfig({
-  navigationBarTitleText: '创建任务',
+  navigationBarTitleText: '个人信息',
 });
