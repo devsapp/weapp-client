@@ -17,6 +17,7 @@ const TaskList = ({ refreshKey }) => {
   }, [refreshKey]);
 
   const fetchTasks = () => {
+    Taro.showLoading();
     Taro.login({
       success: (res) => {
         if (res.code) {
