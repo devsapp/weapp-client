@@ -2,10 +2,14 @@
 您可以点击 点击`一键部署`按钮，进行快速体验。
 
 [![Deploy with Severless Devs](https://img.alicdn.com/imgextra/i1/O1CN01w5RFbX1v45s8TIXPz_!!6000000006118-55-tps-95-28.svg)](https://fcnext.console.aliyun.com/applications/create?template=start-weapp)
+
 # 微信小程序案例
 
 > 快速部署和体验 Serverless 架构下的 Typescript + hapi + Taro + React 的微信小程序项目。
 
+## 扫码体验最终效果
+
+![try](https://img.alicdn.com/imgextra/i4/O1CN01anewVJ1gAlPEkkA1U_!!6000000004102-0-tps-258-258.jpg)
 ## 源代码
 
 - [:octocat: 服务端源代码](https://github.com/devsapp/start-weapp/tree/main/src)
