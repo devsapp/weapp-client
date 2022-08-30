@@ -27,9 +27,7 @@ export default class Index extends Component {
           className="btn-max-w mt-100"
           type="primary"
           onClick={() => {
-            Taro.navigateTo({
-              url: '/pages/index/index',
-            });
+            Taro.navigateBack();
           }}
         >
           返回
