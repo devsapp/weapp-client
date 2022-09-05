@@ -5,7 +5,7 @@ module.exports = {
   },
   defineConstants: {
     API_HOST:
-      '"https://1678944551894245.cn-hangzhou.fc.aliyuncs.com/2016-08-15/proxy/weapp.LATEST/server"',
+      '"https://server-weapp-nxhrqmqttk.cn-shenzhen.fcapp.run"',
   },
   mini: {},
   h5: {
