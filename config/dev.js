@@ -5,7 +5,7 @@ module.exports = {
   },
   defineConstants: {
     API_HOST:
-      '"https://server-weapp-nxhrqmqttk.cn-shenzhen.fcapp.run"',
+      '"http://localhost:9000"',
   },
   mini: {},
   h5: {},
