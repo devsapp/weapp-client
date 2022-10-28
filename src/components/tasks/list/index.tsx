@@ -1,23 +1,24 @@
-import { Text, View, Icon } from '@tarojs/components';
-import Taro from '@tarojs/taro';
-import { useEffect, useState } from 'react';
-import C from '@/constant/config';
+import { Text, View, Icon } from '@tarojs/components'
+import Taro from '@tarojs/taro'
+import { useEffect, useState } from 'react'
+import C from '@/constant/config'
 
 type Task = {
-  _id: string;
-  content: string;
-  createdTime: number;
-};
+  // createdTime: number;
+  id: string
+  content?: string
+  userId?: string
+}
 
 const TaskList = ({ refreshKey }) => {
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const [tasks, setTasks] = useState<Task[]>([])
 
   useEffect(() => {
-    fetchTasks();
-  }, [refreshKey]);
+    fetchTasks()
+  }, [refreshKey])
 
   const fetchTasks = () => {
-    Taro.showLoading();
+    Taro.showLoading()
     Taro.login({
       success: (res) => {
         if (res.code) {
@@ -28,33 +29,34 @@ const TaskList = ({ refreshKey }) => {
               env: Taro.getEnv(),
             },
             success: (res) => {
-              const { error, data, ErrorCode } = res.data;
-              let errorMessage = error || ErrorCode;
+              const { error, data, ErrorCode } = res.data
+              let errorMessage = error || ErrorCode
               if (errorMessage) {
                 Taro.showToast({
                   title: errorMessage,
                   duration: 2000,
                   icon: 'error',
                   mask: false,
-                });
+                })
               } else {
-                setTasks(data);
+                setTasks(data)
               }
             },
             complete: () => {
-              Taro.hideLoading();
-              Taro.stopPullDownRefresh();
+              Taro.hideLoading()
+              Taro.stopPullDownRefresh()
             },
-          });
+          })
         }
       },
-    });
-  };
+    })
+  }
 
   const onDelete = (id) => {
-    Taro.showLoading();
+    Taro.showLoading()
     Taro.login({
       success: (res) => {
+        debugger
         if (res.code) {
           Taro.request({
             url: `${C.ENDPOINT}/api/tasks/${id}`,
@@ -64,38 +66,38 @@ const TaskList = ({ refreshKey }) => {
               env: Taro.getEnv(),
             },
             success: (res) => {
-              const { error, ErrorCode } = res.data;
-              let errorMessage = error || ErrorCode;
+              const { error, ErrorCode } = res.data
+              let errorMessage = error || ErrorCode
               if (errorMessage) {
                 Taro.showToast({
                   title: errorMessage,
                   duration: 2000,
                   icon: 'error',
                   mask: false,
-                });
-                Taro.hideLoading();
+                })
+                Taro.hideLoading()
               } else {
-                fetchTasks();
+                fetchTasks()
               }
             },
-          });
+          })
         }
       },
-    });
-  };
+    })
+  }
 
   return (
     <View className="mt-50 mb-50 text-bold">
       {tasks
-        .sort((a, b) => a.createdTime - b.createdTime)
+        // .sort((a, b) => a.createdTime - b.createdTime)
         .map((task) => (
-          <View key={task._id} className="mt-50 mb-50">
+          <View key={task.id} className="mt-50 mb-50">
             <Text className="mr-20">{task.content}</Text>
-            <Icon size="20" type="clear" color="red" onClick={() => onDelete(task._id)} />
+            <Icon size="20" type="clear" color="red" onClick={() => onDelete(task.id)} />
           </View>
         ))}
     </View>
-  );
-};
+  )
+}
 
-export default TaskList;
+export default TaskList

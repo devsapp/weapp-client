@@ -1,14 +1,14 @@
-import { View, Input, Button } from '@tarojs/components';
-import Taro from '@tarojs/taro';
-import { useState } from 'react';
-import C from '@/constant/config';
+import { View, Input, Button } from '@tarojs/components'
+import Taro from '@tarojs/taro'
+import { useState } from 'react'
+import C from '@/constant/config'
 
 const TaskCreate = ({ onCreated }) => {
-  const [saving, setSaving] = useState(false);
-  const [content, setContent] = useState('');
+  const [saving, setSaving] = useState(false)
+  const [content, setContent] = useState('')
 
   const onClick = () => {
-    setSaving(true);
+    setSaving(true)
 
     Taro.login({
       success: (res) => {
@@ -24,28 +24,28 @@ const TaskCreate = ({ onCreated }) => {
               content,
             },
             success: (res) => {
-              const { error, message, ErrorCode } = res.data;
-              let errorMessage = error + message || ErrorCode;
+              const { error, message, ErrorCode } = res.data
+              let errorMessage = error + message || ErrorCode
               if (errorMessage) {
                 Taro.showToast({
                   title: errorMessage,
                   duration: 2000,
                   icon: 'error',
                   mask: false,
-                });
+                })
               } else {
-                setContent('');
-                onCreated();
+                setContent('')
+                onCreated()
               }
             },
             complete: () => {
-              setSaving(false);
+              setSaving(false)
             },
-          });
+          })
         }
       },
-    });
-  };
+    })
+  }
 
   return (
     <View className="mt-50 mb-50">
@@ -55,7 +55,7 @@ const TaskCreate = ({ onCreated }) => {
           type="text"
           placeholder="请输入任务内容"
           onInput={(e: any) => {
-            setContent(e.target.value);
+            setContent(e.target.value)
           }}
           focus
           maxlength={100}
@@ -67,7 +67,7 @@ const TaskCreate = ({ onCreated }) => {
         </Button>
       </View>
     </View>
-  );
-};
+  )
+}
 
-export default TaskCreate;
+export default TaskCreate
