@@ -75,3 +75,71 @@ GitHub：https://github.com/NervJS/taro/
 
 > npm install -g @tarojs/cli
 找不到依赖 "@tarojs/plugin-platform-weapp"，请先在项目中安装  -- 使用npm安装就不会出现
+
+
+# 开发
+> 每一个 Taro 应用都需要一个入口组件（React 组件）用来注册应用。入口文件默认是 src 目录下的 app.js
+
+在入口组件中我们可以设置全局状态或访问小程序入口实例的生命周期。
+
+npm update @tarojs/components @tarojs/runtime @tarojs/taro @tarojs/plugin-framework-react react-dom react @tarojs/mini-runner @tarojs/webpack-runner @types/react @types/webpack-env
+
+npm update @tarojs/taro
+```sh
+npm outdated
+# 检查更新
+npm i -g npm-check-updates
+# 使用
+npm-check-updates
+# 简写
+ncu
+# 更新全部模块
+ncu -u
+```
+```sh
+IOLOI@IOLOII MINGW64 /d/program/workspace/Other/ali-serverless-wxapp-client (main)
+@tarojs/components                  3.4.3    3.4.3    3.5.7  hello
+@tarojs/mini-runner                 3.4.3    3.4.3    3.5.7  hello
+@tarojs/plugin-framework-react      3.4.3    3.4.3    3.5.7  hello
+@tarojs/react                       3.4.3    3.4.3    3.5.7  hello
+@tarojs/runtime                     3.4.3    3.4.3    3.5.7  hello
+@tarojs/taro                        3.4.3    3.4.3    3.5.7  hello
+@tarojs/webpack-runner              3.4.3    3.4.3    3.5.7  hello
+@types/react                      17.0.52  17.0.52  18.0.24  hello
+@typescript-eslint/eslint-plugin   4.33.0   4.33.0   5.41.0  hello
+@typescript-eslint/parser          4.33.0   4.33.0   5.41.0  hello
+babel-preset-taro                   3.4.3    3.4.3    3.5.7  hello
+eslint                              6.8.0    6.8.0   8.26.0  hello
+eslint-config-taro                  3.4.3    3.4.3    3.5.7  hello
+react                              17.0.2   17.0.2   18.2.0  hello
+react-dom                          17.0.2   17.0.2   18.2.0  hello
+```
+```
+$ ncu -u
+Upgrading D:\program\workspace\Other\ali-serverless-wxapp-client\package.json
+ @tarojs/plugin-framework-react      3.4.3  →     3.5.7
+ @tarojs/react                       3.4.3  →     3.5.7
+ @tarojs/runtime                     3.4.3  →     3.5.7
+ @tarojs/taro                        3.4.3  →     3.5.7
+ @tarojs/webpack-runner              3.4.3  →     3.5.7
+ @types/react                      ^17.0.2  →  ^18.0.24
+ @types/webpack-env                ^1.13.6  →   ^1.18.0
+ @typescript-eslint/eslint-plugin  ^4.15.1  →   ^5.41.0
+ @typescript-eslint/parser         ^4.15.1  →   ^5.41.0
+ babel-preset-taro                   3.4.3  →     3.5.7
+ eslint                             ^6.8.0  →   ^8.26.0
+ eslint-config-taro                  3.4.3  →     3.5.7
+ eslint-plugin-import              ^2.12.0  →   ^2.26.0
+ eslint-plugin-react                ^7.8.2  →  ^7.31.10
+ eslint-plugin-react-hooks          ^4.2.0  →    ^4.6.0
+ react                             ^17.0.0  →   ^18.2.0
+ react-dom                         ^17.0.0  →   ^18.2.0
+ stylelint                         ^14.4.0  →  ^14.14.0
+ typescript                         ^4.1.0  →    ^4.8.4
+
+Run npm install to install new versions.
+```
+
+```sh
+npm ci # npm ERR! cipm can only install packages when your package.json and package-lock.json or npm-shrinkwrap.json are in sync. Please update your lock file with `npm install` before continuing.
+```
