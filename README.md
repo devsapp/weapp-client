@@ -74,3 +74,4 @@ GitHub：https://github.com/NervJS/taro/
 > - Serverless Devs 钉钉交流群：33947367
 
 > npm install -g @tarojs/cli
+找不到依赖 "@tarojs/plugin-platform-weapp"，请先在项目中安装
