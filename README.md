@@ -69,6 +69,8 @@ GitHub：https://github.com/NervJS/taro/
 
 注意：如果您在手机上发现版本没有更新，您需要在手机后台停止微信，重新启动微信。
 
-> - Serverless Devs 项目：https://www.github.com/serverless-devs/serverless-devs   
-> - Serverless Devs 文档：https://www.github.com/serverless-devs/docs   
+> - Serverless Devs 项目：https://www.github.com/serverless-devs/serverless-devs
+> - Serverless Devs 文档：https://www.github.com/serverless-devs/docs
 > - Serverless Devs 钉钉交流群：33947367
+
+> npm install -g @tarojs/cli
