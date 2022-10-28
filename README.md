@@ -143,3 +143,291 @@ Run npm install to install new versions.
 ```sh
 npm ci # npm ERR! cipm can only install packages when your package.json and package-lock.json or npm-shrinkwrap.json are in sync. Please update your lock file with `npm install` before continuing.
 ```
+
+## 开发版本差异
+[各端开发前注意tarojs@v1](https://taro-docs.jd.com/docs/1.x/before-dev-remind)
+* **RN 中 View 标签默认主轴方向是 column，如果不将其他端改成与 RN 一致，就需要在所有用到 display: flex 的地方都显式声明主轴方向。**
+* 如果要支持 React Native 端，必须采用 Flex 布局，并且样式选择器仅支持类选择器 [跨端样式写法](https://taro-docs.jd.com/docs/1.x/before-dev-remind#%E6%A0%B7%E5%BC%8F%E4%BB%A3%E7%A0%81%E7%9A%84%E6%9D%A1%E4%BB%B6%E7%BC%96%E8%AF%91)
+* 入口文件 app.js 里面引入的样式就是全局样式，本地样式会覆盖全局样式。
+* box-shadow 很遗憾，React Native 这方面支持得并不好（仅 ios 支持且支持程度有限），建议你不要报太大希望。
+* border{Top,Right,Bottom,Left} 不支持
+* React Native 不支持 background-image ，阅读一下这篇文章：[Background Images in React Native](https://thekevinscott.com/background-images-in-react-native/)，有助于你理解。
+* [常用标签支持属性](https://taro-docs.jd.com/docs/1.x/before-dev-remind#properties-%E5%B1%9E%E6%80%A7)
+
+## 书写规范
+### 书写
+* 两个空格进行缩进
+* 不要在句末使用分号
+* 字符串统一使用单引号
+    > console.log('hello there')
+    // 如果遇到需要转义的情况，请按如下三种写法书写
+    const x = 'hello "world"'
+    const y = 'hello \'world\''
+    const z = `hello 'world'
+* 关键字后面加空格
+    > if (condition) { ... }   // ✓ 正确
+    if(condition) { ... }    // ✗ 错误
+* 圆括号间不留空格
+    > getName( name )     // ✗ 错误
+    getName(name)       // ✓ 正确
+* 注释首尾留空格
+    > //comment           // ✗ 错误
+    // comment          // ✓ 正确
+    /*comment*/         // ✗ 错误
+    /* comment */       // ✓ 正确
+* 模板字符串中变量前后不加空格
+    > const message = `Hello, ${ name }`    // ✗ 错误
+    const message = `Hello, ${name}`      // ✓ 正确
+* 逗号后面加空格
+* 单行代码块两边加空格
+    > function foo () {return true}    // ✗ 错误
+    function foo () { return true }  // ✓ 正确
+    if (condition) { return true }  // ✓ 正确
+* 键值对当中冒号与值之间要留空白
+    > const obj = { 'key' : 'value' }    // ✗ 错误
+    const obj = { 'key' :'value' }     // ✗ 错误
+    const obj = { 'key':'value' }      // ✗ 错误
+    const obj = { 'key': 'value' }     // ✓ 正确
+* 使用 const/let 定义变量 （侧面意思不要var）
+* 每个 const/let 关键字单独声明一个变量
+* 不要使用 undefined 来初始化变量
+    > let name = undefined    // ✗ 错误
+    \---
+    let name
+    name = 'value'          // ✓ 正确
+* 对于变量和函数名统一使用驼峰命名法
+    > function my_function () { }    // ✗ 错误
+    function myFunction () { }     // ✓ 正确
+    \---
+    const my_var = 'hello'           // ✗ 错误
+    const myVar = 'hello'            // ✓ 正确
+* 字符串拼接操作符 (Infix operators) 之间要留空格
+    > // ✓ 正确
+    const x = 2
+    const message = 'hello, ' + name + '!'
+    \---
+    // ✗ 错误
+    const x=2
+    const message = 'hello, '+name+'!'
+* 不要使用多行字符串
+* 检查 NaN 的正确姿势是使用 isNaN()
+* 用合法的字符串跟 typeof 进行比较操作
+    > typeof name === undefined       // ✗ 错误
+    typeof name === 'undefined'     // ✓ 正确
+* 不要使用 eval()
+* 注意隐式的 eval()
+    > setTimeout("alert('Hello world')")                   // ✗ 错误 - 会运行alert
+    setTimeout(function () { alert('Hello world') })     // ✓ 正确
+* 嵌套的代码块中禁止再定义函数
+* 自调用匿名函数 (IIFEs) 使用括号包裹
+    > const getName = function () { }()     // ✗ 错误
+    \---
+    const getName = (function () { }())   // ✓ 正确
+    const getName = (function () { })()   // ✓ 正确
+<!-- 类相关 -->
+* 类名要以大写字母开头
+* 子类的构造器中一定要调用 super
+* 使用 this 前请确保 super() 已调用
+    ```js
+    class Dog extends Animal {
+        constructor () {
+            this.legs = 4     // ✗ 错误
+            super()
+        }
+    }
+    ```
+* 无参的构造函数调用时要带上括号
+
+* 避免在 return 语句中出现赋值语句
+* return，throw，continue 和 break 后不要再跟代码
+* 始终使用 === 替代 ==
+* if/else 关键字要与花括号保持在同一行
+* 对于三元运算符 ? 和 : 与他们所负责的代码处于同一行
+    ```js
+    // ✓ 正确
+    const location = env.development ? 'localhost' : 'www.api.com'
+
+    // ✓ 正确
+    const location = env.development
+    ? 'localhost'
+    : 'www.api.com'
+
+    // ✗ 错误
+    const location = env.development ?
+    'localhost' :
+    'www.api.com'
+    ```
+* 如果有更好的实现，尽量不要使用三元表达式
+* 用 throw 抛错时，抛出 Error 对象而不是字符串
+    ```js
+    throw 'error'               // ✗ 错误
+    throw new Error('error')    // ✓ 正确
+    ```
+* 使用 Promise 一定要捕捉错误
+
+### 组件及 JSX 书写规范
+> Taro 中组件以类的形式进行创建，并且单个文件中只能存在单个组件
+
+* 终始在自闭合标签前面添加一个空格
+* 属性名称始终使用驼峰命名法
+* 用括号包裹多行 JSX 标签
+    ```jsx
+    // bad
+    render () {
+        return <MyComponent className='long body' foo='bar'>
+                <MyChild />
+              </MyComponent>
+    }
+
+    // good
+    render () {
+        return (
+            <MyComponent className='long body' foo='bar'>
+                <MyChild />
+            </MyComponent>
+        )
+    }
+
+    // good
+    render () {
+        const body = <div>hello</div>
+        return <MyComponent>{body}</MyComponent>
+    }
+    ```
+* 当标签没有子元素时，始终使用自闭合标签
+* 书写顺序
+    > 在 Taro 组件中会包含类静态属性、类属性、生命周期等的类成员，其书写顺序最好遵循以下约定（顺序从上至下）
+    1. static 静态方法
+    2. constructor
+    3. componentWillMount
+    4. componentDidMount
+    5. componentWillReceiveProps
+    6. shouldComponentUpdate
+    7. componentWillUpdate
+    8. componentDidUpdate
+    9. componentWillUnmount
+    10. 点击回调或者事件回调 比如 onClickSubmit() 或者 onChangeDescription()
+    11. 0render
+* 不要在调用 this.setState 时使用 this.state
+    > 由于 this.setState 异步的缘故，这样的做法会导致一些错误，可以通过给 this.setState 传入函数来避免
+    ```js
+    this.setState({
+        value: this.state.value + 1
+    })   // ✗ 错误
+
+    this.setState(prevState => ({ value: prevState.value + 1 }))    // ✓ 正确
+    ```
+* map 循环时请给元素加上 key 属性
+* 尽量避免在 componentDidMount 中调用 this.setState
+    > 因为在 componentDidMount 中调用 this.setState 会导致触发更新
+* 不要在 componentWillUpdate/componentDidUpdate/render 中调用 this.setState
+    ```js
+    import Taro, { Component } from '@tarojs/taro'
+    import { View, Input } from '@tarojs/components'
+
+    class MyComponent extends Component {
+    state = {
+        myTime: 12
+    }
+
+    componentWillUpdate () {
+        this.setState({     // ✗ 错误
+        name: 1
+        })
+    }
+
+    componentDidUpdate () {
+        this.setState({     // ✗ 错误
+        name: 1
+        })
+    }
+
+    render () {
+        const { isEnable } = this.props
+        const { myTime } = this.state
+        this.setState({     // ✗ 错误
+        name: 11
+        })
+        return (
+        <View className='test'>
+            {isEnable && <Text className='test_text'>{myTime}</Text>}
+        </View>
+        )
+    }
+    }
+    ```
+* 组件最好定义 defaultProps
+    ```js
+    import Taro, { Component } from '@tarojs/taro'
+    import { View, Input } from '@tarojs/components'
+
+    class MyComponent extends Component {
+
+    static defaultProps = {
+        isEnable: true
+    }
+
+    state = {
+        myTime: 12
+    }
+
+    render () {
+        const { isEnable } = this.props
+        const { myTime } = this.state
+
+        return (
+        <View className='test'>
+            {isEnable && <Text className='test_text'>{myTime}</Text>}
+        </View>
+        )
+    }
+    }
+    ```
+* render 方法必须有返回值
+* 值为 true 的属性可以省略书写值
+* 事件绑定均以 on 开头
+    > 在 Taro 中所有默认事件如 onClick、onTouchStart 等等，均以 on 开头
+* 子组件传入函数时属性名需要以 on 开头
+
+### Taro 自身限制规范
+* 不能使用 Array#map 之外的方法操作 JSX 数组
+    > Taro 在小程序端实际上把 JSX 转换成了字符串模板，而一个原生 JSX 表达式实际上是一个 React/Nerv 元素(react-element)的构造器，因此在原生 JSX 中你可以随意地对一组 React 元素进行操作。但在 Taro 中你只能使用 map 方法，Taro 转换成小程序中 wx:for
+
+    以下代码会被 ESLint 提示警告，同时在 Taro（小程序端）也不会有效：
+    ```js
+    test.push(<View />)
+    numbers.forEach(number => {
+    if (someCase) {
+        a = <View />
+    }
+    })
+
+    test.shift(<View />)
+
+    components.find(component => {
+    return component === <View />
+    })
+
+    components.some(component => component.constructor.__proto__ === <View />.constructor)
+    ```
+    以下代码不会被警告，也应当在 Taro 任意端中能够运行：
+    ```js
+    numbers.filter(Boolean).map((number) => {
+        const element = <View />
+        return <View />
+    })
+    ```
+    **解决方案:**
+    > 先处理好需要遍历的数组，然后再用处理好的数组调用 map 方法。
+
+## 配置
+各类小程序平台均有自己的项目配置文件，例如：
+微信小程序，project.config.json
+百度小程序，project.swan.json
+字节跳动小程序，project.config.json
+QQ 小程序，project.config.json
+支付宝小程序，mini.project.json
+京东小程序，暂无发现
+飞书小程序，project.config.json
+
+[点击跳转配置指南](https://taro-docs.jd.com/docs/project-config#:~:text=%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%EF%BC%8Cproject,%E4%B9%A6%E5%B0%8F%E7%A8%8B%E5%BA%8F%EF%BC%8Cproject.config.json)
