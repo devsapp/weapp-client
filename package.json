@@ -38,18 +38,18 @@
   "dependencies": {
     "@babel/runtime": "^7.20.0",
     "@tarojs/components": "3.5.7",
-    "@tarojs/runtime": "3.5.7",
-    "@tarojs/taro": "3.5.7",
     "@tarojs/plugin-framework-react": "3.5.7",
     "@tarojs/react": "3.5.7",
-    "react-dom": "^18.2.0",
-    "react": "^18.2.0"
+    "@tarojs/runtime": "3.5.7",
+    "@tarojs/taro": "3.5.7",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.19.6",
     "@tarojs/mini-runner": "3.5.7",
     "@tarojs/webpack-runner": "3.5.7",
-    "@types/react": "^18.0.24",
+    "@types/react": "^17.0.52",
     "@types/webpack-env": "^1.18.0",
     "@typescript-eslint/eslint-plugin": "^5.41.0",
     "@typescript-eslint/parser": "^5.41.0",
