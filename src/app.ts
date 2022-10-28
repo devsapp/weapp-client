@@ -1,10 +1,10 @@
-import { Component } from 'react'
+import { Component, PropsWithChildren } from 'react'
 import './app.less'
 
 // ~~~可以看出入口文件也是 React 风格的写法，首先需要引用依赖 @tarojs/taro，这是 Taro 方案的基础框架，在这里我们继承了 Component 组件基类。这指老版本~~~
 // 因为在 Taro 3 中开发者使用的是真实的 React，React 的 API 如 Component、useState、useEffect 等都需要从 React 包中获取
 
-class App extends Component {
+class App extends Component<PropsWithChildren> {
   // 可以使用所有的 React 生命周期方法
   componentWillMount() {
     // onLoad 之后，页面组件渲染到 Taro 的虚拟 DOM 之前触发。
@@ -43,9 +43,9 @@ class App extends Component {
     return this.props.children
   }
 
-  onError(error) {
-    console.log('GLOBAL onError', error)
-  }
+  // onError(error) {
+  //   console.log('GLOBAL onError', error)
+  // }
 
   onPageNotFound(Object) {
     console.log('GLOBAL onPageNotFound ', Object)

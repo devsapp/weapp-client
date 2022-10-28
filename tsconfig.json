@@ -1,10 +1,11 @@
 {
   "compilerOptions": {
     "paths": {
-      "@/cache/*": ["./src/cache/*"],
-      "@/components/*": ["./src/components/*"],
-      "@/pages/*": ["./src/pages/*"],
-      "@/constant/*": ["./src/constant/*"]
+      "@/*": ["./src/*"],
+      // "@/cache/*": ["./src/cache/*"],
+      // "@/components/*": ["./src/components/*"],
+      // "@/pages/*": ["./src/pages/*"],
+      // "@/constant/*": ["./src/constant/*"]
     },
     "target": "es2017",
     "module": "commonjs",
@@ -26,6 +27,6 @@
     "resolveJsonModule": true,
     "typeRoots": ["node_modules/@types"]
   },
-  "include": ["./src", "global.d.ts"],
+  "include": ["./src", "./types/global.d.ts"],
   "compileOnSave": false
 }

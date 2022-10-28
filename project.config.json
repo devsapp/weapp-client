@@ -1,7 +1,7 @@
 {
   "miniprogramRoot": "dist/",
-  "projectname": "todo",
-  "description": "",
+  "projectname": "myApp",
+  "description": "wx-client",
   "appid": "wx2b62857774f25905",
   "setting": {
     "urlCheck": false,
