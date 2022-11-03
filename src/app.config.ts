@@ -2,7 +2,8 @@ export default defineAppConfig({
   // 开发者可以使用编译时宏函数 defineAppConfig 包裹配置对象，以获得类型提示和自动补全，如：
   pages: [
     'pages/index/index',
-    'pages/user/index'
+    'pages/user/index',
+    'pages/test/index',
   ],
       // 数组的第一项代表小程序的初始页面（首页）。小程序中新增/减少页面，都需要对 pages 数组进行修改。
   window: {
