@@ -8,7 +8,7 @@ import OpenId from '@/components/shared/openid'
 import C from '@/constant/config'
 
 export default class Index extends Component {
-  componentWillMount() { }
+  // componentWillMount() { }
 
   componentDidMount() { }
 

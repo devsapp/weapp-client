@@ -1,0 +1,7 @@
+/* Custom Theme */
+// $color-brand: #07c160;
+// $color-brand-light: #45d188;
+// $color-brand-dark: #069a4d;
+// 覆写的变量，需要在引入 taro ui 默认样式之前定义，默认主题变量命名
+
+@import "~taro-ui/dist/style/index.scss";

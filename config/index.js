@@ -1,12 +1,13 @@
-const path = require("path");
+const path = require("path")
 
 const config = {
   projectName: "hello",
   alias: {
-    "@/cache": path.resolve(__dirname, "..", "src/cache"),
-    "@/components": path.resolve(__dirname, "..", "src/components"),
-    "@/pages": path.resolve(__dirname, "..", "src/pages"),
-    "@/constant": path.resolve(__dirname, "..", "src/constant"),
+    // "@/cache": path.resolve(__dirname, "..", "src/cache"),
+    // "@/components": path.resolve(__dirname, "..", "src/components"),
+    // "@/pages": path.resolve(__dirname, "..", "src/pages"),
+    // "@/constant": path.resolve(__dirname, "..", "src/constant"),
+    "@": path.resolve(__dirname, "..", "src"),
   },
   date: "2022-3-9",
   designWidth: 750,
@@ -48,6 +49,7 @@ const config = {
   h5: {
     publicPath: "/",
     staticDirectory: "static",
+    esnextModules: ['taro-ui'], // https://taro-ui.jd.com/#/docs/quickstart 由于引用 `node_modules` 的模块，默认不会编译，所以需要额外给 H5 配置 `esnextModules`，在 taro 项目的 `config/index.js` 中新增如下配置项：
     postcss: {
       autoprefixer: {
         enable: true,
@@ -62,11 +64,11 @@ const config = {
       },
     },
   },
-};
+}
 
 module.exports = function (merge) {
   if (process.env.NODE_ENV === "development") {
-    return merge({}, config, require("./dev"));
+    return merge({}, config, require("./dev"))
   }
-  return merge({}, config, require("./prod"));
-};
+  return merge({}, config, require("./prod"))
+}

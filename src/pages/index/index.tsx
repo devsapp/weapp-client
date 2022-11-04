@@ -39,7 +39,7 @@ export default class Index extends Component<Props, State> {
     }
   }
 
-  componentWillMount() { }
+  // componentWillMount() { }
 
   componentDidMount() { }
 
